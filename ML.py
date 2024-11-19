@@ -42,8 +42,6 @@ while True:
         stock_check=input()
         ticker = yf.Ticker(stock_symbols[stock_check])
         hist = ticker.history(start="2024-11-14", end="2024-11-15",interval="15m")
-
-        # Print the first 5 rows
         print(hist)
         print("Do you want to end!!!")
         B=input()
@@ -51,6 +49,8 @@ while True:
             break
     except KeyError:
         print("Invalid stock symbol.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 print("Enter Grapstyle you want \n \t 1)Simple Line Plot \n \t 2)Candlestick Chart\n \t 3)Volume Chart\n \t 4)Combined Chart")
 Choise=int(input())
@@ -59,17 +59,18 @@ if Choise==1:
     plt.plot(hist.index, hist['Close'])
     plt.xlabel('Date')
     plt.ylabel('Closing Price')
-    plt.title('Closing Price of AAPL')
+    plt.title(f'Closing Price of{stock_check}')
     plt.grid(True)
     plt.show()
 elif Choise==2:
-    mpf.plot(hist, type='candle', style='yahoo', title='AAPL Candlestick Chart', ylabel='Price')
+    mpf.plot(hist, type='candle', style='yahoo', title=f'{stock_check} Candlestick Chart', ylabel='Price')
+
 elif Choise==3:
     plt.figure(figsize=(12, 6))
     plt.bar(hist.index, hist['Volume'], color='gray')
     plt.xlabel('Date')
     plt.ylabel('Volume')
-    plt.title('Trading Volume of AAPL')
+    plt.title(f'Trading Volume of  {stock_check}')
     plt.grid(True)
     plt.show()
 elif Choise==4:
