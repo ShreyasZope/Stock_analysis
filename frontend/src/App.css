@@ -1,0 +1,16 @@
+.App {
+  /* Other styles for the main app container if needed */
+}
+
+.iframe-container {
+  /* This will align the iframe to the left */
+  text-align: left;  
+  /* optional: If you want the iframe to take up 100% of the container's width */
+  width: 100%;  
+}
+
+/* OR */
+.iframe-container {
+  display: flex; /* Use flexbox */
+  justify-content: flex-start; /* Align items to the start (left) */
+}
